@@ -1,30 +1,18 @@
-//
-//  ContentView.swift
-//  12-7-25
-//
-//  Created by T Krobot on 12/7/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-        .onAppear{
-            
-        }
-        
-        
-    }
-    
-}
+    @StateObject var audioManager = AudioManger.shared
+    @StateObject var gameManager = GameManager()
+    @StateObject var scoreManager = ScoreManager.shared
+    @StateObject var beatManager = BeatManager()
 
-#Preview {
-    ContentView()
+    var body: some View {
+        NavigationStack {
+            HomePageView()
+                .environmentObject(audioManager)
+                .environmentObject(gameManager)
+                .environmentObject(scoreManager)
+                .environmentObject(beatManager)
+        }
+    }
 }

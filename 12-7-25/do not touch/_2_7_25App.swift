@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct _2_7_25App: App {
+    @StateObject var beatManager = BeatManager.shared
+    @StateObject var scoreManager = ScoreManager.shared
+
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(beatManager)
+                .environmentObject(scoreManager)
         }
     }
 }

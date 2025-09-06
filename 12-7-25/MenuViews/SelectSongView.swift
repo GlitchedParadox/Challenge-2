@@ -1,30 +1,29 @@
-//
-//  SelectSongView.swift
-//  12-7-25
-//
-//  Created by T Krobot on 12/7/25.
-//
-
 import SwiftUI
 
 struct SelectSongView: View {
-    @State private var isGamePlaySheetPresented: Bool = false
-    var body: some View {
-        Text("Select Song")
-            .padding()
-        Button{
-            isGamePlaySheetPresented = true
-        }label:{
-            Text("Song")
+    @EnvironmentObject var gameManager: GameManager
+    @EnvironmentObject var beatManager: BeatManager
 
+    let songs = ["notion", "song2", "song3"] // Example songs in your bundle
+
+    var body: some View {
+        VStack {
+            Text("Select a Song")
+                .font(.title)
+                .padding()
+
+            List(songs, id: \.self) { song in
+                NavigationLink(destination: GamePlayView()) {
+                    Button(action: {
+                        gameManager.start_Game()
+                    }) {
+                        Text("notion")
+                    }
+                }
+            }
         }
-        .sheet(isPresented: $isGamePlaySheetPresented){
-            GamePlayView()
-        }
-        .buttonStyle(.borderedProminent)
     }
 }
-
 #Preview {
     SelectSongView()
 }
