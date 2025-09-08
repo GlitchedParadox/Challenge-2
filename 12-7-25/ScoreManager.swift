@@ -42,18 +42,23 @@ class ScoreManager: ObservableObject {
     }
     
     /// NEW: Link with BeatManager results
-    func updateScore(with result: BeatManager.JudgeResult) {
-        switch result.rank {
+    func updateScore(with rank: BeatManager.Rank) {
+        switch rank {
         case .perfect:
-            recordHit()
+            snapHits += 1
+            score += 100
         case .great:
-            recordWrong()
+            snapHits += 1
+            score += 70
         case .good:
-            recordWrong()
+            snapHits += 1
+            score += 50
         case .miss:
-            recordMiss()
+            snapMisses += 1
         case .none:
-                break
+            break
         }
+        updatePercentage()
     }
+
 }
