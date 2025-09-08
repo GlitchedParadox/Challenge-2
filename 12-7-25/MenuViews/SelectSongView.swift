@@ -15,7 +15,7 @@ struct SelectSongView: View {
             List(songs, id: \.self) { song in
                 NavigationLink(destination: GamePlayView()) {
                     Button(action: {
-                        gameManager.start_Game()
+                        gameManager.startGame()
                     }) {
                         Text("notion")
                     }

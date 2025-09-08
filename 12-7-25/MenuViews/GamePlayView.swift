@@ -40,8 +40,11 @@ struct GamePlayView: View {
                 Spacer()
             }
         }
+        
+        
+        
         .onAppear {
-            beatManager.StartBeat(
+            beatManager.startBeat(
                 sequence: [ [4], [8], [10], [12], [13], [17], [18 ], [20]], // spawn beats at 2s, 4s, etc
                 musicFile: "notion"
             )
@@ -59,6 +62,9 @@ struct GamePlayView: View {
 
     #Preview {
         GamePlayView()
+            .environmentObject(BeatManager.shared)
+            .environmentObject(ScoreManager.shared)
+            .environmentObject(GameManager())
     }
 
 
